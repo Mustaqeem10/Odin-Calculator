@@ -1,0 +1,19 @@
+.button, .button-op, .button-eq {
+    width: 40px;
+    height: 40px;
+}
+
+.container h1{
+    margin-bottom: 30px;
+}
+
+.row {
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#res {
+    text-align: start !important;
+    margin-left: 81px;
+    font-size: 30px;
+}

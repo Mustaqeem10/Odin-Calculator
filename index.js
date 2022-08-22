@@ -48,3 +48,15 @@ function operate(num1, num2, op) {
     }
 }
 
+// Functionality for button
+let button = document.getElementsByClassName('button');
+let display = document.querySelector('#res');
+
+for (let i = 0 ; i < button.length ; i++)
+{
+    button[i].addEventListener('click', (e) => {
+        display.textContent += e.target.value;
+    })
+}
+
+
