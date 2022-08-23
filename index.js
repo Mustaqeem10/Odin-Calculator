@@ -51,11 +51,13 @@ function operate(op, num) {
 // Functionality for button
 let button = document.getElementsByClassName('button');
 let display = document.querySelector('#res');
+let text = ""; 
 let userInput = []
 let num = "";
 for (let i = 0; i < button.length; i++) {
     button[i].addEventListener('click', (e) => {
-        display.textContent += e.target.value;
+        text = e.target.value;
+        display.textContent += text;
         isValidOperator = true;
         num += e.target.value;
         // userInput.push(e.target.value);
@@ -72,16 +74,30 @@ document.addEventListener('keydown', (e) => {
     let re2 = /[*]/;
     let re3 = /[+-/]/
     if (re.test(e.key)){
-        display.textContent += e.key;
-        num = display.textContent;
-        userInput.push(num);
+        text += e.key
+        display.textContent = text;
+        num += e.key;
+    }
+
+    if (e.key == "Backspace"){
+        text = text.slice(0,-1);
+        display.textContent = text;
+        num = text;
+        userInput.pop();
+        
     }
     if (re2.test(e.key)){
-        display.textContent += 'x';
+        text += 'x';
+        display.textContent = text;
+        userInput.push(num);
+        userInput.push('x');
         num = "";
     }
     if (re3.test(e.key)){
-        display.textContent += e.key;
+        text += e.key;
+        display.textContent = text;
+        userInput.push(num);
+        userInput.push(e.key);
         num = "";
     }
 })
@@ -91,7 +107,8 @@ document.addEventListener('keydown', (e) => {
 for (let j = 0; j < operator.length; j++) {
     operator[j].addEventListener('click', (e) => {
         if (isValidOperator) {
-            display.textContent += e.target.value;
+            text += e.target.value;
+            display.textContent = text;
             if (num !== "") {
                 userInput.push(num);
                 num = "";
@@ -113,6 +130,7 @@ for (let j = 0; j < operator.length; j++) {
 let clear = document.querySelector('.button-cl');
 
 clear.addEventListener('click', () => {
+    text = "";
     display.innerHTML = "";
     userInput = [];
 })
